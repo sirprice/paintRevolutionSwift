@@ -20,7 +20,7 @@ class DrawTools {
     }
     
     func shapeInfo(at:Int) -> ShapeToolInfo? {
-        if at < shapeTools.count {
+        if 0 <= at && at < shapeTools.count {
             return shapeTools[at]
         }
         return nil
