@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		85C329951E60C4AE003117CC /* ShapeToolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C329941E60C4AE003117CC /* ShapeToolCell.swift */; };
 		85C3299D1E60C99D003117CC /* ShapeTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3299C1E60C99D003117CC /* ShapeTool.swift */; };
+		85C3299F1E60E275003117CC /* ShapeToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3299E1E60E275003117CC /* ShapeToolViewController.swift */; };
 		85E805681E6064A600294AA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E805671E6064A600294AA5 /* AppDelegate.swift */; };
 		85E8056A1E6064A600294AA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E805691E6064A600294AA5 /* ViewController.swift */; };
 		85E8056C1E6064A600294AA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85E8056B1E6064A600294AA5 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		85C329941E60C4AE003117CC /* ShapeToolCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeToolCell.swift; sourceTree = "<group>"; };
 		85C3299C1E60C99D003117CC /* ShapeTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeTool.swift; sourceTree = "<group>"; };
+		85C3299E1E60E275003117CC /* ShapeToolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeToolViewController.swift; sourceTree = "<group>"; };
 		85E805641E6064A600294AA5 /* paintRevolutionSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = paintRevolutionSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E805671E6064A600294AA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85E805691E6064A600294AA5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				85E805701E6064A600294AA5 /* Info.plist */,
 				85C329941E60C4AE003117CC /* ShapeToolCell.swift */,
 				85C3299C1E60C99D003117CC /* ShapeTool.swift */,
+				85C3299E1E60E275003117CC /* ShapeToolViewController.swift */,
 			);
 			path = paintRevolutionSwift;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85E8056A1E6064A600294AA5 /* ViewController.swift in Sources */,
+				85C3299F1E60E275003117CC /* ShapeToolViewController.swift in Sources */,
 				85C3299D1E60C99D003117CC /* ShapeTool.swift in Sources */,
 				85C329951E60C4AE003117CC /* ShapeToolCell.swift in Sources */,
 				85E805681E6064A600294AA5 /* AppDelegate.swift in Sources */,
