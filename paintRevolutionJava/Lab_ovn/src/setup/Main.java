@@ -4,11 +4,8 @@ import Factory.Setup;
 import controllers.MainViewController;
 import controllers.SceneController;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import models.DrawModel;
+import models.SceneModel;
 import view.MainView;
 
 import java.util.function.Consumer;
@@ -27,13 +24,14 @@ public class Main extends Application {
 //        primaryStage.setTitle("Hello World");
 //        primaryStage.setScene(new Scene(root, 300, 275));
 //        primaryStage.show();
-//        this.controller = Setup.createDrawArea(DrawModel.class,MainView.class);
+//        this.controller = Setup.createDrawArea(SceneModel.class,MainView.class);
         // createMVCSup
-//        this.controller = Setup.createDrawArea (DrawModel.class,MainView.class, MainViewController.class);
-//        this.controller = Setup.createMVCSup(DrawModel::new, MainView::new, (model,view) ->new MainViewController(model,view));
-//        this.controller = Setup.createMVCSup(DrawModel::new, MainView::new, MainViewController::new);
-        this.controller = Setup.createConstruct (DrawModel::new, MainView::new, MainViewController::new);
+//        this.controller = Setup.createDrawArea (SceneModel.class,MainView.class, MainViewController.class);
+//        this.controller = Setup.createMVCSup(SceneModel::new, MainView::new, (model,view) ->new MainViewController(model,view));
+//        this.controller = Setup.createMVCSup(SceneModel::new, MainView::new, MainViewController::new);
+        this.controller = Setup.createConstruct (SceneModel::new, MainView::new, MainViewController::new);
         this.controller.showScene(primaryStage);
+        this.controller.drawScene();
         System.out.println("tes test");
         Dataobj data = new Dataobj(5);
         Consumer<MyTest> con = my -> {

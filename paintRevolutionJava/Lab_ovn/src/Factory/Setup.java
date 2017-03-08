@@ -2,7 +2,7 @@ package Factory;
 
 import controllers.MainViewController;
 import controllers.SceneController;
-import models.DrawModel;
+import models.SceneModel;
 import view.DrawView;
 
 import java.lang.reflect.Constructor;
@@ -15,15 +15,15 @@ import java.util.function.Supplier;
  */
 public class Setup {
 
-    public static SceneController createConstruct(Supplier<DrawModel> model, Supplier<DrawView> view, ApplyConstructor<DrawModel,DrawView,SceneController> controller) throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
+    public static SceneController createConstruct(Supplier<SceneModel> model, Supplier<DrawView> view, ApplyConstructor<SceneModel,DrawView,SceneController> controller) throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
 
         return controller.make(model.get(),view.get());
     }
 
-    public static SceneController createMVCSup(Supplier<DrawModel> model, Supplier<DrawView> view, BiFunction<DrawModel,DrawView,SceneController> controller) throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
-        //Constructor ctor = controller.getDeclaredConstructor(DrawModel.class, DrawView.class);
+    public static SceneController createMVCSup(Supplier<SceneModel> model, Supplier<DrawView> view, BiFunction<SceneModel,DrawView,SceneController> controller) throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
+        //Constructor ctor = controller.getDeclaredConstructor(SceneModel.class, DrawView.class);
 
-//        DrawModel m = (DrawModel)model.newInstance();
+//        SceneModel m = (SceneModel)model.newInstance();
 //        DrawView v = (DrawView)view.newInstance();
 //
 
@@ -31,15 +31,15 @@ public class Setup {
     }
 
     public static SceneController createDrawArea(Class model, Class view,Class controller) throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
-        Constructor ctor = controller.getDeclaredConstructor(DrawModel.class, DrawView.class);
+        Constructor ctor = controller.getDeclaredConstructor(SceneModel.class, DrawView.class);
 
-//        DrawModel m = (DrawModel)model.newInstance();
+//        SceneModel m = (SceneModel)model.newInstance();
 //        DrawView v = (DrawView)view.newInstance();
 //
         return (SceneController)ctor.newInstance(model.newInstance(),view.newInstance());
     }
     public static SceneController createDrawArea(Class model, Class view) throws IllegalAccessException, InstantiationException {
-        DrawModel m = (DrawModel)model.newInstance();
+        SceneModel m = (SceneModel)model.newInstance();
         DrawView v = (DrawView)view.newInstance();
         return (SceneController)new MainViewController(m,v);
     }
