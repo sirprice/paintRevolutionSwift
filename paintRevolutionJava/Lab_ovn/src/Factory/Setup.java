@@ -15,7 +15,7 @@ import java.util.function.Supplier;
  */
 public class Setup {
 
-    public static SceneController createConstruct(Supplier<SceneModel> model, Supplier<DrawView> view, ApplyConstructor<SceneModel,DrawView,SceneController> controller) throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
+    public static <M,V,C> C createConstruct(Supplier<M> model, Supplier<V> view, ApplyConstructor<M,V,C> controller) throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
 
         return controller.make(model.get(),view.get());
     }
@@ -38,10 +38,10 @@ public class Setup {
 //
         return (SceneController)ctor.newInstance(model.newInstance(),view.newInstance());
     }
-    public static SceneController createDrawArea(Class model, Class view) throws IllegalAccessException, InstantiationException {
-        SceneModel m = (SceneModel)model.newInstance();
-        DrawView v = (DrawView)view.newInstance();
-        return (SceneController)new MainViewController(m,v);
-    }
+//    public static SceneController createDrawArea(Class model, Class view) throws IllegalAccessException, InstantiationException {
+//        SceneModel m = (SceneModel)model.newInstance();
+//        DrawView v = (DrawView)view.newInstance();
+//        return (SceneController)new MainViewController(m,v);
+//    }
 
 }

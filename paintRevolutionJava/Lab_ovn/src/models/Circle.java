@@ -18,7 +18,7 @@ public class Circle extends Shape {
     public Circle() {
     }
 
-    public Circle(double radius, double x, double y) {
+    public Circle(double x, double y,double radius) {
         this.radius = radius;
         this.x = x;
         this.y = y;
