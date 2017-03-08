@@ -15,6 +15,26 @@ public class Rectangle extends Shape {
     private double x = 250.0;
     private double y = 250.0;
 
+    @Override
+    public double getX() {
+        return x;
+    }
+
+    @Override
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    @Override
+    public double getY() {
+        return y;
+    }
+
+    @Override
+    public void setY(double y) {
+        this.y = y;
+    }
+
     public Rectangle() {
     }
 
@@ -27,9 +47,8 @@ public class Rectangle extends Shape {
 
     @Override
     protected void drawShape(GraphicsContext g) {
-//        g.setFill();
         g.setStroke(Color.BLACK);
-        g.strokeRect(x,y, width, height);
+        g.strokeRect(x - width/2, y - height/2, width, height);
         g.stroke();
 
     }

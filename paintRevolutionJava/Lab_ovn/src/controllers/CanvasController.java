@@ -20,6 +20,10 @@ public class CanvasController {
         observer.add(this,this::drawScene);
     }
 
+    private void canvasClick() {
+
+    }
+
     public void drawScene() {
         view.renderView(model.getShapes());
     }

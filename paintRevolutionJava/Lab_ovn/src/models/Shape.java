@@ -19,5 +19,10 @@ abstract public class Shape implements ShapeDescription, Cloneable {
 
     abstract public Shape createCopy();
 
+    abstract public void setX(double x);
+    abstract public void setY(double y);
+    abstract public double getX();
+    abstract public double getY();
+
 
 }

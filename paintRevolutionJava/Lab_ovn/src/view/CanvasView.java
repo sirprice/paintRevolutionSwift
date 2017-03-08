@@ -1,9 +1,6 @@
 package view;
 
-import SubjectObserver.MyObservable;
-import SubjectObserver.ObserverEmpty;
-import SubjectObserver.ObserverImpl;
-import SubjectObserver.ToolSelect;
+import SubjectObserver.*;
 import controllers.SceneController;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -18,14 +15,16 @@ import java.util.List;
 /**
  * Created by o_0 on 2017-03-08.
  */
-public class CanvasView implements DrawView, MyObservable<ToolSelect> {
+public class CanvasView implements DrawView, MyObservable<CanvasClick> {
 
 
     private int width = 400;
     private int height = 500;
     Canvas canvas;
     StackPane mainPane;
+    private ObserverImpl<CanvasClick> observer;
     public CanvasView() {
+        this.observer = new ObserverImpl<CanvasClick>();
         setup();
     }
 
@@ -35,6 +34,9 @@ public class CanvasView implements DrawView, MyObservable<ToolSelect> {
 
         this.mainPane = new StackPane();
         this.canvas = new Canvas(width,height);
+        this.canvas.setOnMouseClicked( mouse -> {
+            observer.notifyObservers(m -> m.clickedAt(mouse.getX(),mouse.getY()));
+        });
         this.mainPane.getChildren().add(canvas);
 //        this.scene = new Scene(mainPane, width, height);
     }
@@ -51,8 +53,8 @@ public class CanvasView implements DrawView, MyObservable<ToolSelect> {
     }
 
     @Override
-    public ObserverImpl<ToolSelect> getObserver() {
-        return null;
+    public ObserverImpl<CanvasClick> getObserver() {
+        return observer;
     }
 
 }

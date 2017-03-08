@@ -15,6 +15,26 @@ public class Circle extends Shape {
     private double x = 250.0;
     private double y = 250.0;
 
+
+    @Override
+    public double getX() {
+        return x;
+    }
+
+    @Override
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    @Override
+    public void setY(double y) {
+        this.y = y;
+    }
+
     public Circle() {
     }
 
@@ -28,7 +48,7 @@ public class Circle extends Shape {
     protected void drawShape(GraphicsContext g) {
 //        g.setFill();
         g.setStroke(Color.BLACK);
-        g.strokeOval(x,y,radius,radius);
+        g.strokeOval(x - radius/2,y - radius/2,radius,radius);
         g.stroke();
 
     }

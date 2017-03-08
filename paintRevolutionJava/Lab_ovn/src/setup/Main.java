@@ -1,6 +1,7 @@
 package setup;
 
 import Factory.Setup;
+import StateHandler.CommandState;
 import SubjectObserver.MytestObser;
 import SubjectObserver.ObserverImpl;
 import controllers.CanvasController;
@@ -22,6 +23,7 @@ public class Main extends Application {
     SceneController controller;
     ToolBarController toolBarController;
     CanvasController canvasController;
+    CommandState commandState;
     MainViewController mainViewController;
     private static void localFunc(String arg1, int arg2, Dataobj arg3)
     {
@@ -51,10 +53,16 @@ public class Main extends Application {
         sPrototype.add(new Circle());
         sPrototype.add(new Rectangle());
 
-
         SceneModel sceneModel = new SceneModel();
+
+        commandState = new CommandState(sPrototype, sceneModel);
+
         ToolBarView toolBarView = new ToolBarView();
         CanvasView canvasView = new CanvasView();
+
+        commandState.setCanvasClickObserver(canvasView);
+        commandState.setSelectObserver(toolBarView);
+
         toolBarController = Setup.createConstruct(() -> sPrototype,() -> toolBarView , ToolBarController::new);
         canvasController = Setup.createConstruct(() -> sceneModel,() -> canvasView, CanvasController::new);
 
