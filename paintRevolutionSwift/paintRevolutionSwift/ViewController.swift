@@ -10,10 +10,14 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    @IBOutlet weak var selectedShape: NSTextField!
+    
+    @IBOutlet weak var shapeToolTable: NSTableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
 
     override var representedObject: Any? {
@@ -21,7 +25,6 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
-
+    
 
 }
-
