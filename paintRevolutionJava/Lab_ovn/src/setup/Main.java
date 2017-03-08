@@ -8,8 +8,9 @@ import controllers.MainViewController;
 import controllers.SceneController;
 import controllers.ToolBarController;
 import javafx.application.Application;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
-import models.SceneModel;
+import models.*;
 import view.CanvasView;
 import view.MainView;
 import view.ToolBarView;
@@ -46,10 +47,15 @@ public class Main extends Application {
 
         // MainViewController
         // DrawController, MainView ,ProgramController
+        SPrototype sPrototype = new SPrototype();
+        sPrototype.add(new Circle());
+        sPrototype.add(new Rectangle());
+
+
         SceneModel sceneModel = new SceneModel();
         ToolBarView toolBarView = new ToolBarView();
         CanvasView canvasView = new CanvasView();
-        toolBarController = Setup.createConstruct(() -> sceneModel,() -> toolBarView , ToolBarController::new);
+        toolBarController = Setup.createConstruct(() -> sPrototype,() -> toolBarView , ToolBarController::new);
         canvasController = Setup.createConstruct(() -> sceneModel,() -> canvasView, CanvasController::new);
 
         mainViewController = Setup.createConstruct(() -> toolBarView, () -> canvasView, MainViewController::new);

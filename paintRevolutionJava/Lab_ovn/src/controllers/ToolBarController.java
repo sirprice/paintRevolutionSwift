@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import models.Circle;
+import models.SPrototype;
 import models.SceneModel;
 import view.ToolBarView;
 
@@ -17,9 +18,9 @@ import java.util.Random;
  */
 public class ToolBarController implements SceneController {
     private ToolBarView toolBarView;
-    private SceneModel model;
+    private SPrototype model;
 
-    public ToolBarController(SceneModel model,ToolBarView toolBarView) {
+    public ToolBarController(SPrototype model,ToolBarView toolBarView) {
         this.toolBarView = toolBarView;
         this.model = model;
 
@@ -32,15 +33,15 @@ public class ToolBarController implements SceneController {
     }
 
 
-    public void toolSelected(int toolId) {
-        System.out.println("ToolBarController selected tool: " + toolId);
-        Random rand = new Random();
-        model.addShape(new Circle(rand.nextInt(250),rand.nextInt(250),rand.nextInt(250)));
+    public void toolSelected(String name) {
+        System.out.println("ToolBarController selected tool: " + name);
+        //Random rand = new Random();
+        //model.addShape(new Circle(rand.nextInt(250),rand.nextInt(250),rand.nextInt(250)));
 
     }
 
     public void updateTools() {
-        this.toolBarView.setTools(model.getShapes());
+        this.toolBarView.setTools(model.getPrototypes());
     }
 
     private EventHandler<MouseEvent> onMouseClickHandler() {

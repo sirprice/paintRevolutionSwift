@@ -5,5 +5,5 @@ package SubjectObserver;
  */
 @FunctionalInterface
 public interface ToolSelect {
-    void selectTool(int toolId);
+    void selectTool(String name);
 }

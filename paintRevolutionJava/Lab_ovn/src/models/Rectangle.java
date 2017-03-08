@@ -2,24 +2,25 @@ package models;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
 /**
- * Created by o_0 on 2017-03-08.
+ * Created by cj on 2017-03-08.
  */
-public class Circle extends Shape {
+public class Rectangle extends Shape {
 
     private String name = getClass().getSimpleName();
     private int id;
-    private double radius = 100.0;
+    private double width = 100.0;
+    private double height = 100.0;
     private double x = 250.0;
     private double y = 250.0;
 
-    public Circle() {
+    public Rectangle() {
     }
 
-    public Circle(double x, double y,double radius) {
-        this.radius = radius;
+    public Rectangle(double x, double y,double width, double height) {
+        this.width = width;
+        this.height = height;
         this.x = x;
         this.y = y;
     }
@@ -28,7 +29,7 @@ public class Circle extends Shape {
     protected void drawShape(GraphicsContext g) {
 //        g.setFill();
         g.setStroke(Color.BLACK);
-        g.strokeOval(x,y,radius,radius);
+        g.strokeRect(x,y, width, height);
         g.stroke();
 
     }
@@ -39,9 +40,8 @@ public class Circle extends Shape {
     }
 
 
-
     @Override
     public Shape createCopy() {
-        return new Circle(x,y,radius);
+        return new Rectangle(x,y,width,height);
     }
 }

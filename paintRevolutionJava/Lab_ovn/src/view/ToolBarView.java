@@ -16,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Shape;
+import models.ShapeDescription;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,15 +58,15 @@ public class ToolBarView implements DrawView , MyObservable<ToolSelect> {
 //        return observer;
 //    }
 
-    public void setTools(List<Shape> shapes) {
+    public void setTools(List<ShapeDescription> shapes) {
         toolBar.getChildren().removeAll(tools);
         tools = new ArrayList<>();
-        for (Shape s : shapes) {
+        for (ShapeDescription s : shapes) {
             ToggleButton tg = new ToggleButton();
             tg.setToggleGroup(toolToggleGroup);
             tg.setText(s.getName());
             tg.setOnMouseClicked((a) -> {
-                observer.notifyObservers(selected -> selected.selectTool(s.getId()));
+                observer.notifyObservers(selected -> selected.selectTool(s.getName()));
             });
             //tg.setOnMouseClicked(onMouseClickHandler);
             tools.add(tg);

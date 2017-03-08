@@ -7,5 +7,5 @@ public interface ShapeDescription {
 
     public String getName();
 
-    public int getId();
+
 }
