@@ -9,6 +9,8 @@ import javafx.scene.paint.Paint;
  */
 public class Circle extends Shape {
 
+    private String name;
+    private int id;
     private double radius = 100.0;
     private double x = 250.0;
     private double y = 250.0;
@@ -29,5 +31,15 @@ public class Circle extends Shape {
         g.strokeOval(x,y,radius,radius);
         g.stroke();
 
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 }
