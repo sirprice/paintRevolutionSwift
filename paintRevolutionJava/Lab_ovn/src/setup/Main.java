@@ -1,6 +1,8 @@
 package setup;
 
 import Factory.Setup;
+import SubjectObserver.MytestObser;
+import SubjectObserver.ObserverImpl;
 import controllers.MainViewController;
 import controllers.SceneController;
 import javafx.application.Application;
@@ -29,7 +31,8 @@ public class Main extends Application {
 //        this.controller = Setup.createDrawArea (SceneModel.class,MainView.class, MainViewController.class);
 //        this.controller = Setup.createMVCSup(SceneModel::new, MainView::new, (model,view) ->new MainViewController(model,view));
 //        this.controller = Setup.createMVCSup(SceneModel::new, MainView::new, MainViewController::new);
-        this.controller = Setup.createConstruct (SceneModel::new, MainView::new, MainViewController::new);
+        MainView test = new MainView();
+        this.controller = Setup.createConstruct (SceneModel::new, () -> test, MainViewController::new);
         this.controller.showScene(primaryStage);
         this.controller.drawScene();
         System.out.println("tes test");
@@ -41,6 +44,14 @@ public class Main extends Application {
             my.func("hej4",1,data);
         };
         con.accept(Main::localFunc);
+
+        ObserverImpl<MytestObser> objs = new ObserverImpl<>();
+        objs.add(this,this::hej1);
+        objs.notifyObservers(myTest -> myTest.doStuff(5,5));
+    }
+
+    void hej1(int a,int b) {
+        System.out.println("hej1, a:" + a + " b: " + b);
     }
 
     class Dataobj {

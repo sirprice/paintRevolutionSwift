@@ -42,13 +42,13 @@ public class ToolBarView implements DrawView {
     }
 
 
-    public void setTools(List<Shape> shapes, EventHandler<MouseEvent> onMouseClickHandler) {
+    public void setTools(List<Shape> shapes) {
         tools = new ArrayList<>();
         for (Shape s : shapes) {
             ToggleButton tg = new ToggleButton();
             tg.setToggleGroup(toolToggleGroup);
             tg.setText(s.getName());
-            tg.setOnMouseClicked(onMouseClickHandler);
+            //tg.setOnMouseClicked(onMouseClickHandler);
             tools.add(tg);
 
 

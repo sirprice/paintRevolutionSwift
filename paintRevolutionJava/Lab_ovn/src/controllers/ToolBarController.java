@@ -16,7 +16,14 @@ public class ToolBarController {
         this.toolBarView = toolBarView;
         this.model = model;
 
-        this.toolBarView.setTools(model.getShapes(),onMouseClickHandler());
+//        this.toolBarView.setTools(model.getShapes(),onMouseClickHandler());
+        updateTools();
+    }
+
+
+
+    public void updateTools() {
+        this.toolBarView.setTools(model.getShapes());
     }
 
     private EventHandler<MouseEvent> onMouseClickHandler() {

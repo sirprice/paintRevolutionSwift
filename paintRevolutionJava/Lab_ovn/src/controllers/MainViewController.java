@@ -11,7 +11,9 @@ public class MainViewController implements SceneController {
         this.view = view;
         this.model = model;
         view.setDelegate(this);
+
     }
+
 
 
     @Override
