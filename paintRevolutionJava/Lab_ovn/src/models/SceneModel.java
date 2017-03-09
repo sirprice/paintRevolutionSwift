@@ -32,10 +32,27 @@ public class SceneModel implements MyObservable<ShapeAdded> {
         observer.notifyObservers(m -> m.modelChanged());
     }
 
+    public void addShapes(List<Shape> addShapes) {
+        shapes.addAll(addShapes);
+        observer.notifyObservers(m -> m.modelChanged());
+    }
+
     public boolean removeShape(Shape shape) {
         System.out.println("SceneModel:removeShape size:  " + shapes.size());
 
         if (shapes.remove(shape)) {
+            observer.notifyObservers(m -> m.modelChanged());
+            return true;
+        }
+        System.out.println("SceneModel:removeShape false:  " + shapes.size());
+
+        return false;
+    }
+
+    public boolean removeShapes(List<Shape> removeShapes) {
+        System.out.println("SceneModel:removeShape size:  " + shapes.size());
+
+        if (shapes.removeAll(removeShapes)) {
             observer.notifyObservers(m -> m.modelChanged());
             return true;
         }

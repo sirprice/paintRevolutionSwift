@@ -34,6 +34,6 @@ public class ShapeProperties implements Cloneable,Serializable {
 
     @Override
     protected ShapeProperties clone() throws CloneNotSupportedException {
-        return new ShapeProperties(color, isFilled, lineWidth);
+        return new ShapeProperties(new Color(red,green,blue,opacity), isFilled, lineWidth);
     }
 }

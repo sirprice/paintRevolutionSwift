@@ -17,13 +17,13 @@ public class CommandFactory {
         this.sceneModel = sceneModel;
         this.prototype = prototype;
     }
-
+// ComandDeleteShape
     public Command getCreateComand() {
         return new CreateShape(sceneModel,prototype);
     }
     public Command getSelectComand() {return new CommandSelectShape(sceneModel,prototype);}
     public Command getChangePropertiesCommand(ShapeProperties shapeProperties){ return new CommandChangeProperties(sceneModel,shapeProperties);}
-
+    public Command getDeleteCommand() {return new ComandDeleteShape(sceneModel,prototype);}
 
 
     public IrreversibleCommand getNewDocumentCommand(){return new NewDocumentCommand(sceneModel,prototype);}

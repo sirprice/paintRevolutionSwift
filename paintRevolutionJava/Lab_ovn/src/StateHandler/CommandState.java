@@ -72,6 +72,9 @@ public class CommandState {
             //
         } else if (currentTool.equals("Select")) {
             //
+        } else if (currentTool.equals("Delete")){
+            Command command = commandFactory.getDeleteCommand();
+            commandCentral.doCommand(command, new CommandTarget(0, 0, currentShape, activeSelections));
         }
     }
 

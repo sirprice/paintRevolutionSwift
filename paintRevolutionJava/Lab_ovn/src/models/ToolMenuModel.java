@@ -23,7 +23,7 @@ public class ToolMenuModel {
         this.shapes.add(() -> "Undo");
         this.shapes.add(() -> "Redo");
         this.shapes.add(() -> "Select");
-        this.shapes.add(() -> "delete");
+        this.shapes.add(() -> "Delete");
 
     }
 
