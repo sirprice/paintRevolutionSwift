@@ -1,6 +1,7 @@
 package setup;
 
 import Factory.Setup;
+import Factory.ShapeFactory;
 import StateHandler.CommandState;
 import SubjectObserver.MytestObser;
 import SubjectObserver.ObserverImpl;
@@ -16,6 +17,7 @@ import view.CanvasView;
 import view.MainView;
 import view.ToolBarView;
 
+import java.util.ArrayList;
 import java.util.function.Consumer;
 
 public class Main extends Application {
@@ -49,9 +51,12 @@ public class Main extends Application {
 
         // MainViewController
         // DrawController, MainView ,ProgramController
+
+
         SPrototype sPrototype = new SPrototype();
-        sPrototype.add(new Circle());
-        sPrototype.add(new Rectangle());
+        sPrototype.add(ShapeFactory.createCircle());
+        sPrototype.add(ShapeFactory.createRectangle());
+        sPrototype.add(ShapeFactory.createDude());
 
         SceneModel sceneModel = new SceneModel();
 

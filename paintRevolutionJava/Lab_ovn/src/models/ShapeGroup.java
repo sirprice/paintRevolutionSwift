@@ -69,6 +69,9 @@ public class ShapeGroup extends Shape{
         this.y = posY;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @Override
     protected void drawShape(GraphicsContext g) {
