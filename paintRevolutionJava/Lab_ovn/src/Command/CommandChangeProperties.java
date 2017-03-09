@@ -5,6 +5,7 @@ import models.SceneModel;
 import models.Shape;
 import models.ShapeProperties;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,9 @@ public class CommandChangeProperties implements Command {
     public CommandChangeProperties(SceneModel sceneModel, ShapeProperties shapeProperties) {
         this.sceneModel = sceneModel;
         this.shapeProperties = shapeProperties;
+        this.oldShapeList = new ArrayList<>();
+        this.newShapeList = new ArrayList<>();
+        this.oldShapePropertiesList = new ArrayList<>();
     }
 
     @Override
@@ -43,12 +47,20 @@ public class CommandChangeProperties implements Command {
     @Override
     public void undo() {
         for (int i=0;i<oldShapeList.size();i++){
+            Shape s = oldShapeList.get(i);
+            ShapeProperties sp = oldShapePropertiesList.get(i);
+            s.updateShapeProperties(sp);
 
         }
+        sceneModel.update();
     }
 
     @Override
     public void redo() {
-
+        for (int i=0;i<oldShapeList.size();i++){
+            Shape s = oldShapeList.get(i);
+            s.updateShapeProperties(shapeProperties);
+        }
+        sceneModel.update();
     }
 }
