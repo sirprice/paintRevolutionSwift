@@ -5,10 +5,12 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
+import java.io.Serializable;
+
 /**
  * Created by o_0 on 2017-03-08.
  */
-abstract public class Shape implements ToolDescription, Cloneable {
+abstract public class Shape implements ToolDescription, Cloneable, Serializable {
 
     protected ShapeProperties shapeProperties;
 
@@ -26,6 +28,10 @@ abstract public class Shape implements ToolDescription, Cloneable {
         drawShape(context2D);
 
 
+    }
+
+    public ShapeProperties getShapeProperties() {
+        return shapeProperties;
     }
 
     abstract protected  void drawShape(GraphicsContext g);

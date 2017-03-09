@@ -18,6 +18,7 @@ public class ToolMenuModel {
         this.observer = new ObserverImpl<ShapeAdded>();
         this.shapes.add(() -> "New");
         this.shapes.add(() -> "Load");
+        this.shapes.add(() -> "Save");
         this.shapes.add(() -> "Draw");
         this.shapes.add(() -> "Undo");
         this.shapes.add(() -> "Redo");
