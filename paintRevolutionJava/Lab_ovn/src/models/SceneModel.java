@@ -12,7 +12,7 @@ import java.util.List;
  * Created by o_0 on 2017-02-17.
  */
 public class SceneModel implements MyObservable<ShapeAdded> {
-    private ArrayList<Shape> shapes = new ArrayList<>();
+    private List<Shape> shapes = new ArrayList<>();
 
     private ObserverImpl<ShapeAdded> observer;
 
@@ -56,6 +56,13 @@ public class SceneModel implements MyObservable<ShapeAdded> {
         return null;
     }
 
+
+    public void setShapes(List<Shape> shapes){
+        if (shapes != null){
+            this.shapes = shapes;
+            update();
+        }
+    }
 
     public void totalAnnihilation(){
         shapes = new ArrayList<>();

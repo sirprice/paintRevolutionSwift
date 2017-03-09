@@ -7,22 +7,33 @@ import StateHandler.CommandState;
 import SubjectObserver.MytestObser;
 import SubjectObserver.ObserverImpl;
 import controllers.*;
+import filemanager.FileManager;
 import javafx.application.Application;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.*;
 import view.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
 public class Main extends Application {
 
-    SceneController controller;
-    ToolBarController toolBarController;
-    CanvasController canvasController;
-    CommandState commandState;
-    MainViewController mainViewController;
+    private SceneController controller;
+    private ToolBarController toolBarController;
+    private CanvasController canvasController;
+    private CommandState commandState;
+    private MainViewController mainViewController;
+    private FileChooser fileChooser;
+    private Stage primaryStage;
+    private SceneModel sceneModel;
+
+
+
     private static void localFunc(String arg1, int arg2, Dataobj arg3)
     {
         System.out.println("Loc func: " + arg1 + " arg2: " + arg2+ " arg3: " + arg3.toString());
@@ -30,7 +41,8 @@ public class Main extends Application {
     }
     @Override
     public void start(Stage primaryStage) throws Exception{
-//        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+//
+// Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 //        primaryStage.setTitle("Hello World");
 //        primaryStage.setScene(new Scene(root, 300, 275));
 //        primaryStage.show();
@@ -48,13 +60,15 @@ public class Main extends Application {
         // MainViewController
         // DrawController, MainView ,ProgramController
 
+        this.primaryStage = primaryStage;
 
         SPrototype sPrototype = new SPrototype();
         sPrototype.add(ShapeFactory.createCircle());
         sPrototype.add(ShapeFactory.createRectangle());
         sPrototype.add(ShapeFactory.createDude());
 
-        SceneModel sceneModel = new SceneModel();
+
+        sceneModel = new SceneModel();
 
 
         CommandFactory commandFactory = new CommandFactory(sPrototype, sceneModel);
@@ -69,6 +83,7 @@ public class Main extends Application {
         commandState.setShapeSelectObserver(toolShapesBarView);
         commandState.setToolSelectionObserver(toolSelectorBarView);
         commandState.setShapePropertyObserver(rightToolBar);
+        toolSelectorBarView.getObserver().add(this,this::loadFile);
 
         ToolMenuController controller = Setup.createConstruct(ToolMenuModel::new , () -> toolSelectorBarView, ToolMenuController::new);
         toolBarController = Setup.createConstruct(() -> sPrototype,() -> toolShapesBarView , ToolBarController::new);
@@ -102,6 +117,17 @@ public class Main extends Application {
         objs.add(this,this::hej1);
         objs.notifyObservers(myTest -> myTest.doStuff(5,5));
     }
+
+
+    public void loadFile(String option){
+        if (option.equals("Load")){
+            sceneModel.setShapes(FileManager.loadFile(primaryStage));
+        }
+        if (option.equals("Save")){
+            FileManager.saveFile(primaryStage, sceneModel.getShapes());
+        }
+    }
+
 
     void hej1(int a,int b) {
         System.out.println("hej1, a:" + a + " b: " + b);
