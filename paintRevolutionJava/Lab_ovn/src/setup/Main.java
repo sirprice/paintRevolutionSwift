@@ -1,5 +1,6 @@
 package setup;
 
+import Factory.CommandFactory;
 import Factory.Setup;
 import Factory.ShapeFactory;
 import StateHandler.CommandState;
@@ -59,7 +60,8 @@ public class Main extends Application {
         SceneModel sceneModel = new SceneModel();
 
 
-        commandState = new CommandState(sPrototype, sceneModel);
+        CommandFactory commandFactory = new CommandFactory(sPrototype, sceneModel);
+        commandState = new CommandState(commandFactory);
 
         ToolBarView toolShapesBarView = new ToolBarView();
         ToolBarView toolSelectorBarView = new ToolBarView();

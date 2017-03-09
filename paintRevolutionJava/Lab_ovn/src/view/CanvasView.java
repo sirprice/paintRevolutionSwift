@@ -50,6 +50,7 @@ public class CanvasView implements DrawView, MyObservable<CanvasClick> {
 
     @Override
     public void renderView(List<Shape> shapes) {
+        canvas.getGraphicsContext2D().clearRect(0,0,canvas.getWidth(),canvas.getHeight());
         for(Shape s : shapes) {
             s.draw(canvas);
         }
