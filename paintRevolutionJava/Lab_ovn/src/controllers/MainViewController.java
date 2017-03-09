@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class MainViewController implements SceneController {
     MainView view;
-    public MainViewController(ArrayList<DrawView> toolBarView, DrawView canvasView) {
-        this.view = new MainView(toolBarView,canvasView);
+    public MainViewController(ArrayList<DrawView> toolBarView,ArrayList<DrawView> rightToolBarView, DrawView canvasView) {
+        this.view = new MainView(toolBarView,rightToolBarView,canvasView);
     }
 
 

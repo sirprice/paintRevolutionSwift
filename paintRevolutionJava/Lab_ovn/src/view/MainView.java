@@ -1,36 +1,36 @@
 package view;
 
-import SubjectObserver.ObserverEmpty;
-import SubjectObserver.ObserverImpl;
-import controllers.MainViewController;
 import controllers.SceneController;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import models.Shape;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by o_0 on 2017-02-17.
  */
 public class MainView {
     private Scene scene;
-    private int width = 1024;
+    private int width = 1324;
     private int height = 720;
 //    Canvas canvas;
-    ArrayList<DrawView> toolBarViews;
+    ArrayList<DrawView> leftBarViews;
+    ArrayList<DrawView> rightBarViews;
     DrawView canvasView;
     HBox mainDisplay;
-    public MainView(ArrayList<DrawView> toolBarView,DrawView canvasView) {
-        this.toolBarViews = toolBarView;
+
+
+    public MainView(ArrayList<DrawView> leftBarViews, ArrayList<DrawView> rightBarViews, DrawView canvasView) {
+        this.leftBarViews = leftBarViews;
         this.canvasView = canvasView;
+        this.rightBarViews = rightBarViews;
         setup();
     }
+
+
 
     private SceneController controller;
 
@@ -38,14 +38,22 @@ public class MainView {
 
         StackPane mainPane = new StackPane();
         this.mainDisplay = new HBox();
-        VBox toolArea= new VBox();
-        for (DrawView view : toolBarViews) {
-            view.addMeToView(toolArea);
+        VBox leftToolArea= new VBox();
+        for (DrawView view : leftBarViews) {
+            view.addMeToView(leftToolArea);
+
         }
-        mainDisplay.getChildren().add(toolArea);
+        mainDisplay.getChildren().add(leftToolArea);
 
         this.canvasView.addMeToView(mainDisplay);
 
+        VBox rightToolArea= new VBox();
+
+        for (DrawView view : rightBarViews) {
+            view.addMeToView(rightToolArea);
+
+        }
+        mainDisplay.getChildren().add(rightToolArea);
 
         mainPane.getChildren().add(mainDisplay);
 //        canvas = new Canvas(width,height);

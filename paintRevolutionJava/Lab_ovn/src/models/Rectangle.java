@@ -36,9 +36,11 @@ public class Rectangle extends Shape {
     }
 
     public Rectangle() {
+        super(new ShapeProperties(Color.BLACK,false,5));
     }
 
     public Rectangle(double x, double y,double width, double height) {
+        super(new ShapeProperties(Color.BLACK,false,5));
         this.width = width;
         this.height = height;
         this.x = x;
@@ -47,7 +49,9 @@ public class Rectangle extends Shape {
 
     @Override
     protected void drawShape(GraphicsContext g) {
-        g.setStroke(Color.BLACK);
+        //g.setStroke(Color.BLACK);
+
+
         g.strokeRect(x - width/2, y - height/2, width, height);
         g.stroke();
 
@@ -61,6 +65,12 @@ public class Rectangle extends Shape {
 
     @Override
     public Shape createCopy() {
+
         return new Rectangle(x,y,width,height);
+    }
+
+    @Override
+    public boolean containsPoint(double x, double y) {
+        return false;
     }
 }

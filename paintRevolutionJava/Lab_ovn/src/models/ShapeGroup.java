@@ -20,10 +20,12 @@ public class ShapeGroup extends Shape{
     private double y = 0.0;
 
     public ShapeGroup() {
+        super(new ShapeProperties(Color.BLACK,false,5));
         this.shapes = new ArrayList<Shape>();
     }
 
     public ShapeGroup(double x, double y, ArrayList<Shape> shapes) {
+        super(new ShapeProperties(Color.BLACK,false,5));
         this.shapes = shapes;
         this.x = x;
         this.y = y;
@@ -92,5 +94,21 @@ public class ShapeGroup extends Shape{
             newShape.add(s.createCopy());
         }
         return new ShapeGroup(x,y,newShape);
+    }
+
+    @Override
+    public void updateShapeProperties(ShapeProperties shapeProperties) {
+        for (Shape s : shapes) {
+            s.updateShapeProperties(shapeProperties);
+        }
+    }
+
+    @Override
+    public boolean containsPoint(double x, double y) {
+        for (Shape s : shapes) {
+            if (s.containsPoint(x,y))
+                return true;
+        }
+        return false;
     }
 }

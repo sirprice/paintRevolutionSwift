@@ -48,10 +48,22 @@ public class SceneModel implements MyObservable<ShapeAdded> {
         return this.shapes;
 
     }
+    public Shape getShapeAt(double x, double y){
+        for (Shape s: shapes){
+            if (s.containsPoint(x,y))
+                return s;
+        }
+        return null;
+    }
+
 
     public void totalAnnihilation(){
         shapes = new ArrayList<>();
         observer.notifyObservers(m -> m.modelChanged());
 
+    }
+
+    public void update(){
+        observer.notifyObservers(m -> m.modelChanged());
     }
 }

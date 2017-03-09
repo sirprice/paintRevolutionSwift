@@ -5,8 +5,8 @@ import SubjectObserver.ObserverImpl;
 import SubjectObserver.ToolSelect;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import models.Shape;
 import models.ToolDescription;
 
@@ -36,6 +36,7 @@ public class ToolBarView implements DrawView , MyObservable<ToolSelect> {
 
         toolBar = new VBox();
         toolBar.setPrefWidth(width);
+        toolBar.setBorder(new Border(new BorderStroke(null,null,null, new BorderWidths(10))));
         tools = new ArrayList<>();
         toolToggleGroup = new ToggleGroup();
 

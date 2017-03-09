@@ -1,5 +1,6 @@
 package models;
 
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -36,9 +37,11 @@ public class Circle extends Shape {
     }
 
     public Circle() {
+        super(new ShapeProperties(Color.BLACK,false,5));
     }
 
     public Circle(double x, double y,double radius) {
+        super(new ShapeProperties(Color.BLACK,false,5));
         this.radius = radius;
         this.x = x;
         this.y = y;
@@ -46,8 +49,12 @@ public class Circle extends Shape {
 
     @Override
     protected void drawShape(GraphicsContext g) {
-//        g.setFill();
-        g.setStroke(Color.BLACK);
+
+//        g.setLineWidth(shapeProperties.getLineWidth());
+//        g.setStroke(shapeProperties.getColor());
+//        if (shapeProperties.isFilled())
+//            g.fill();
+//
         g.strokeOval(x - radius/2,y - radius/2,radius,radius);
         g.stroke();
 
@@ -63,5 +70,15 @@ public class Circle extends Shape {
     @Override
     public Shape createCopy() {
         return new Circle(x,y,radius);
+    }
+
+    @Override
+    public boolean containsPoint(double x, double y) {
+        Point2D p = new Point2D(x,y);
+        if (p.distance(this.x,this.y)>radius)
+            return false;
+        System.out.println("Circle selected");
+        return true;
+
     }
 }

@@ -6,9 +6,11 @@ import Command.CommandTarget;
 import Factory.CommandFactory;
 import SubjectObserver.CanvasClick;
 import SubjectObserver.MyObservable;
+import SubjectObserver.ObserverShapeProperties;
 import SubjectObserver.ToolSelect;
-import models.SPrototype;
-import models.SceneModel;
+import javafx.scene.paint.Color;
+import models.Shape;
+import models.ShapeProperties;
 
 /**
  * Created by o_0 on 2017-03-09.
@@ -16,8 +18,11 @@ import models.SceneModel;
 public class CommandState {
     private String currentShape = null;
     private String currentTool = null;
-//    private SPrototype prototype;
-//    private SceneModel sceneModel;
+    private Shape selectedShape = null;
+    private ActiveSelections activeSelections = new ActiveSelections();
+
+    //    private SPrototype prototype;
+//       private SceneModel sceneModel;
 
     private CommandCentral commandCentral = new CommandCentral();
     CommandFactory commandFactory;
@@ -32,6 +37,10 @@ public class CommandState {
         selectObserver.getObserver().add(this, this::eventSelectTool);
     }
 
+    public void setShapePropertyObserver(MyObservable<ObserverShapeProperties> selectObserver) {
+        selectObserver.getObserver().add(this, this::eventShapePropertiesChanged);
+    }
+
 
     public void setShapeSelectObserver(MyObservable<ToolSelect> selectObserver) {
         selectObserver.getObserver().add(this, this::eventSelectShapeTool);
@@ -39,6 +48,12 @@ public class CommandState {
 
     public void setCanvasClickObserver(MyObservable<CanvasClick> canvasClickObserver) {
         canvasClickObserver.getObserver().add(this, this::eventClickedAt);
+    }
+
+    private void eventShapePropertiesChanged(Color color, boolean isFilled, double lineWidth){
+        Command command = commandFactory.getChangePropertiesCommand(new ShapeProperties(color,isFilled,lineWidth));
+        commandCentral.doCommand(command, new CommandTarget(0, 0, currentShape, activeSelections));
+
     }
 
     private void eventSelectTool(String name) {
@@ -64,11 +79,21 @@ public class CommandState {
         if (currentShape == null || currentTool == null) {
             return;
         }
+
+
+
 //        Shape shape = prototype.create(currentShape);
 //        if (shape == null) {return;}
         if (currentTool.equals("Draw")) {
-            Command createComand = commandFactory.getCreateComand();
-            commandCentral.doCommand(createComand, new CommandTarget(x, y, currentShape));
+            Command command = commandFactory.getCreateComand();
+            commandCentral.doCommand(command, new CommandTarget(x, y, currentShape, null));
+        }
+
+        if (currentTool.equals("Select")) {
+            System.out.println("SelectTool selected, selecting much shapes");
+
+            Command command = commandFactory.getSelectComand();
+            commandCentral.doCommand(command, new CommandTarget(x, y, currentShape, activeSelections));
         }
 //
 //        shape.setX(x);

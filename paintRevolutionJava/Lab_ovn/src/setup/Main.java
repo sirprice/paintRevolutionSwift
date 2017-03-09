@@ -11,10 +11,7 @@ import javafx.application.Application;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import models.*;
-import view.CanvasView;
-import view.DrawView;
-import view.MainView;
-import view.ToolBarView;
+import view.*;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
@@ -66,10 +63,12 @@ public class Main extends Application {
         ToolBarView toolShapesBarView = new ToolBarView();
         ToolBarView toolSelectorBarView = new ToolBarView();
         CanvasView canvasView = new CanvasView();
+        DetailView rightToolBar = new DetailView();
 
         commandState.setCanvasClickObserver(canvasView);
         commandState.setShapeSelectObserver(toolShapesBarView);
         commandState.setToolSelectionObserver(toolSelectorBarView);
+        commandState.setShapePropertyObserver(rightToolBar);
 
         ToolMenuController controller = Setup.createConstruct(ToolMenuModel::new , () -> toolSelectorBarView, ToolMenuController::new);
         toolBarController = Setup.createConstruct(() -> sPrototype,() -> toolShapesBarView , ToolBarController::new);
@@ -77,7 +76,12 @@ public class Main extends Application {
         ArrayList<DrawView> toolArea = new ArrayList<>();
         toolArea.add(toolSelectorBarView);
         toolArea.add(toolShapesBarView);
-        mainViewController = Setup.createConstruct(() -> toolArea, () -> canvasView, MainViewController::new);
+
+        ArrayList<DrawView> rightToolArea = new ArrayList<>();
+        rightToolArea.add(rightToolBar);
+
+        mainViewController = new MainViewController(toolArea,rightToolArea,canvasView);
+        //mainViewController = Setup.createConstruct(() -> toolArea, () -> canvasView, MainViewController::new);
 
 //        this.controller = Setup.createConstruct (SceneModel::new, ToolBarView::new, ToolBarController::new);
         mainViewController.showScene(primaryStage);
