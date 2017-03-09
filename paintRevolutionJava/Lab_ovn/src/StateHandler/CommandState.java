@@ -49,6 +49,14 @@ public class CommandState {
             commandCentral.undo();
         } else if (currentTool.equals("Redo")) {
             commandCentral.redo();
+        } else if (currentTool.equals("New")) {
+            commandFactory.getNewDocumentCommand().execute(null);
+            commandCentral.clearHistory();
+
+        } else if (currentTool.equals("Load")) {
+            //
+        } else if (currentTool.equals("Select")) {
+            //
         }
     }
 
@@ -58,7 +66,7 @@ public class CommandState {
         }
 //        Shape shape = prototype.create(currentShape);
 //        if (shape == null) {return;}
-        if (currentTool.equals("Create")) {
+        if (currentTool.equals("Draw")) {
             Command createComand = commandFactory.getCreateComand();
             commandCentral.doCommand(createComand, new CommandTarget(x, y, currentShape));
         }
