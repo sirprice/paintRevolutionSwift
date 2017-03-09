@@ -73,4 +73,6 @@ public class SceneModel implements MyObservable<ShapeAdded> {
     public void update(){
         observer.notifyObservers(m -> m.modelChanged());
     }
+
+
 }
