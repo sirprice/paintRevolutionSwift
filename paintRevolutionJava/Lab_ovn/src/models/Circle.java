@@ -65,10 +65,13 @@ public class Circle extends Shape {
         return name;
     }
 
-
-
     @Override
     public Shape createCopy() {
+        return new Circle(x,y,radius);
+    }
+
+    @Override
+    public Circle clone() throws CloneNotSupportedException {
         return new Circle(x,y,radius);
     }
 

@@ -23,7 +23,11 @@ public class SPrototype implements MyObservable<ShapeAdded> {
     }
 
     public Shape create(String name){
-        return shapes.get(name).createCopy();
+        try {
+            return shapes.get(name).clone();
+        }catch (CloneNotSupportedException ex) {
+            return null;
+        }
     }
 
     public void add(Shape shape){

@@ -39,6 +39,17 @@ abstract public class Shape implements ToolDescription, Cloneable {
     abstract public double getY();
     public abstract boolean containsPoint(double x, double y);
 
+    public Shape clone() throws CloneNotSupportedException
+    {
+        try {
+            Shape copy = (Shape)super.clone();
+            copy.shapeProperties.clone();
+            return copy;
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
+    }
+
     public void updateShapeProperties(ShapeProperties shapeProperties){
         this.shapeProperties = shapeProperties;
     }

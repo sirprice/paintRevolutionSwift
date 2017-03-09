@@ -70,6 +70,11 @@ public class Rectangle extends Shape {
     }
 
     @Override
+    public Shape clone() throws CloneNotSupportedException {
+        return new Rectangle(x,y,width,height);
+    }
+
+    @Override
     public boolean containsPoint(double x, double y) {
         return false;
     }

@@ -97,6 +97,13 @@ public class ShapeGroup extends Shape{
     }
 
     @Override
+    public ShapeGroup clone() throws CloneNotSupportedException {
+        ShapeGroup copy = (ShapeGroup)super.clone();
+        copy.shapes.clone();
+        return copy;
+    }
+
+    @Override
     public void updateShapeProperties(ShapeProperties shapeProperties) {
         for (Shape s : shapes) {
             s.updateShapeProperties(shapeProperties);

@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 /**
  * Created by cj on 2017-03-09.
  */
-public class ShapeProperties {
+public class ShapeProperties implements Cloneable {
     private Color color;
     private boolean isFilled;
     private double lineWidth;
@@ -26,5 +26,10 @@ public class ShapeProperties {
 
     public double getLineWidth() {
         return lineWidth;
+    }
+
+    @Override
+    protected ShapeProperties clone() throws CloneNotSupportedException {
+        return new ShapeProperties(color, isFilled, lineWidth);
     }
 }
