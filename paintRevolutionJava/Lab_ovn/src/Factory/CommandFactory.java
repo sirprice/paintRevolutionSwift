@@ -1,6 +1,6 @@
 package Factory;
-
 import Command.Command;
+import Command.*;
 import Command.CreateShape;
 import models.SPrototype;
 import models.SceneModel;
@@ -20,4 +20,8 @@ public class CommandFactory {
     public Command getCreateComand() {
         return new CreateShape(sceneModel,prototype);
     }
+    public IrreversibleCommand getNewDocumentCommand(){return new NewDocumentCommand(sceneModel,prototype);}
+
+
+
 }

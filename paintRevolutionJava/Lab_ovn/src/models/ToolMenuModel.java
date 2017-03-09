@@ -16,11 +16,14 @@ public class ToolMenuModel {
 
     public ToolMenuModel() {
         this.observer = new ObserverImpl<ShapeAdded>();
-        this.shapes.add(() -> "Create");
+        this.shapes.add(() -> "New");
+        this.shapes.add(() -> "Load");
+        this.shapes.add(() -> "Draw");
         this.shapes.add(() -> "Undo");
         this.shapes.add(() -> "Redo");
         this.shapes.add(() -> "Select");
         this.shapes.add(() -> "delete");
+
     }
 
     public ObserverImpl<ShapeAdded> getObserver() {
@@ -34,6 +37,16 @@ public class ToolMenuModel {
 
     public List<ToolDescription> getTools() {
         return this.shapes;
+
+    }
+    public void defaultShapes(){
+        this.observer = new ObserverImpl<ShapeAdded>();
+        this.shapes.add(() -> "Draw");
+        this.shapes.add(() -> "Undo");
+        this.shapes.add(() -> "Redo");
+        this.shapes.add(() -> "Select");
+        this.shapes.add(() -> "delete");
+        observer.notifyObservers(m -> m.modelChanged());
 
     }
 }

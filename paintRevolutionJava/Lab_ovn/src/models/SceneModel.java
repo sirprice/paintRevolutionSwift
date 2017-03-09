@@ -48,4 +48,10 @@ public class SceneModel implements MyObservable<ShapeAdded> {
         return this.shapes;
 
     }
+
+    public void totalAnnihilation(){
+        shapes = new ArrayList<>();
+        observer.notifyObservers(m -> m.modelChanged());
+
+    }
 }

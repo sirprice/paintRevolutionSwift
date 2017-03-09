@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 /**
  * Created by o_0 on 2017-03-09.
  */
-public class CreateShape extends Command {
+public class CreateShape implements Command {
 
     private Shape shape;
     private SceneModel sceneModel;

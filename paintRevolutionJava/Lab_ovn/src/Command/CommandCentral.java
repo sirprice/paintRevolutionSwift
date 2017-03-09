@@ -42,4 +42,8 @@ public class CommandCentral {
         last.undo();
         redoStack.addLast(last);
     }
+    public void clearHistory(){
+        redoStack = new LinkedList();
+        undoStack = new LinkedList();
+    }
 }
