@@ -21,12 +21,21 @@ public class CommandState {
         this.sceneModel = sceneModel;
     }
 
-    public void setSelectObserver(MyObservable<ToolSelect> selectObserver) {
+    public void setToolSelectionObserver(MyObservable<ToolSelect> selectObserver) {
         selectObserver.getObserver().add(this,this::eventSelectTool);
+    }
+
+
+    public void setShapeSelectObserver(MyObservable<ToolSelect> selectObserver) {
+        selectObserver.getObserver().add(this,this::eventSelectShapeTool);
     }
 
     public void setCanvasClickObserver(MyObservable<CanvasClick> canvasClickObserver) {
         canvasClickObserver.getObserver().add(this,this::eventClickedAt);
+    }
+
+    private void eventSelectTool(String name) {
+        System.out.println("eventSelectTool: " + name);
     }
 
     private void eventClickedAt(double x, double y) {
@@ -38,7 +47,7 @@ public class CommandState {
         sceneModel.addShape(shape);
     }
 
-    private void eventSelectTool(String name) {
+    private void eventSelectShapeTool(String name) {
         currentTool = name;
     }
 

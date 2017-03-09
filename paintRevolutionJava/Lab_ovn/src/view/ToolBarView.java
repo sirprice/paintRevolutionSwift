@@ -3,20 +3,12 @@ package view;
 import SubjectObserver.MyObservable;
 import SubjectObserver.ObserverImpl;
 import SubjectObserver.ToolSelect;
-import controllers.SceneController;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import models.Shape;
-import models.ShapeDescription;
+import models.ToolDescription;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,10 +50,10 @@ public class ToolBarView implements DrawView , MyObservable<ToolSelect> {
 //        return observer;
 //    }
 
-    public void setTools(List<ShapeDescription> shapes) {
+    public void setTools(List<ToolDescription> shapes) {
         toolBar.getChildren().removeAll(tools);
         tools = new ArrayList<>();
-        for (ShapeDescription s : shapes) {
+        for (ToolDescription s : shapes) {
             ToggleButton tg = new ToggleButton();
             tg.setToggleGroup(toolToggleGroup);
             tg.setText(s.getName());

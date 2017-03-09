@@ -18,8 +18,8 @@ import java.util.List;
 public class CanvasView implements DrawView, MyObservable<CanvasClick> {
 
 
-    private int width = 400;
-    private int height = 500;
+    private int width = 824;
+    private int height = 720;
     Canvas canvas;
     StackPane mainPane;
     private ObserverImpl<CanvasClick> observer;
@@ -34,14 +34,17 @@ public class CanvasView implements DrawView, MyObservable<CanvasClick> {
 
         this.mainPane = new StackPane();
         this.canvas = new Canvas(width,height);
+//        this.canvas = new Canvas();
         this.canvas.setOnMouseClicked( mouse -> {
             observer.notifyObservers(m -> m.clickedAt(mouse.getX(),mouse.getY()));
         });
+
         this.mainPane.getChildren().add(canvas);
 //        this.scene = new Scene(mainPane, width, height);
     }
 
     public void addMeToView(Pane pane) {
+
         pane.getChildren().add(mainPane);
     }
 

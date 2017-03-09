@@ -5,15 +5,13 @@ import Factory.ShapeFactory;
 import StateHandler.CommandState;
 import SubjectObserver.MytestObser;
 import SubjectObserver.ObserverImpl;
-import controllers.CanvasController;
-import controllers.MainViewController;
-import controllers.SceneController;
-import controllers.ToolBarController;
+import controllers.*;
 import javafx.application.Application;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import models.*;
 import view.CanvasView;
+import view.DrawView;
 import view.MainView;
 import view.ToolBarView;
 
@@ -60,18 +58,24 @@ public class Main extends Application {
 
         SceneModel sceneModel = new SceneModel();
 
+
         commandState = new CommandState(sPrototype, sceneModel);
 
-        ToolBarView toolBarView = new ToolBarView();
+        ToolBarView toolShapesBarView = new ToolBarView();
+        ToolBarView toolSelectorBarView = new ToolBarView();
         CanvasView canvasView = new CanvasView();
 
         commandState.setCanvasClickObserver(canvasView);
-        commandState.setSelectObserver(toolBarView);
+        commandState.setShapeSelectObserver(toolShapesBarView);
+        commandState.setToolSelectionObserver(toolSelectorBarView);
 
-        toolBarController = Setup.createConstruct(() -> sPrototype,() -> toolBarView , ToolBarController::new);
+        ToolMenuController controller = Setup.createConstruct(ToolMenuModel::new , () -> toolSelectorBarView, ToolMenuController::new);
+        toolBarController = Setup.createConstruct(() -> sPrototype,() -> toolShapesBarView , ToolBarController::new);
         canvasController = Setup.createConstruct(() -> sceneModel,() -> canvasView, CanvasController::new);
-
-        mainViewController = Setup.createConstruct(() -> toolBarView, () -> canvasView, MainViewController::new);
+        ArrayList<DrawView> toolArea = new ArrayList<>();
+        toolArea.add(toolSelectorBarView);
+        toolArea.add(toolShapesBarView);
+        mainViewController = Setup.createConstruct(() -> toolArea, () -> canvasView, MainViewController::new);
 
 //        this.controller = Setup.createConstruct (SceneModel::new, ToolBarView::new, ToolBarController::new);
         mainViewController.showScene(primaryStage);

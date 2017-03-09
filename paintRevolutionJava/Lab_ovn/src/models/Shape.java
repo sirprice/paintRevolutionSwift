@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 /**
  * Created by o_0 on 2017-03-08.
  */
-abstract public class Shape implements ShapeDescription, Cloneable {
+abstract public class Shape implements ToolDescription, Cloneable {
 
 
 

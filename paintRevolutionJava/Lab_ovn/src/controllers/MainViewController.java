@@ -5,9 +5,11 @@ import models.SceneModel;
 import view.DrawView;
 import view.MainView;
 
+import java.util.ArrayList;
+
 public class MainViewController implements SceneController {
     MainView view;
-    public MainViewController(DrawView toolBarView,DrawView canvasView) {
+    public MainViewController(ArrayList<DrawView> toolBarView, DrawView canvasView) {
         this.view = new MainView(toolBarView,canvasView);
     }
 

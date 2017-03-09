@@ -8,9 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Shape;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,14 +20,14 @@ import java.util.List;
  */
 public class MainView {
     private Scene scene;
-    private int width = 500;
-    private int height = 500;
+    private int width = 1024;
+    private int height = 720;
 //    Canvas canvas;
-    DrawView toolBarView;
+    ArrayList<DrawView> toolBarViews;
     DrawView canvasView;
     HBox mainDisplay;
-    public MainView(DrawView toolBarView,DrawView canvasView) {
-        this.toolBarView = toolBarView;
+    public MainView(ArrayList<DrawView> toolBarView,DrawView canvasView) {
+        this.toolBarViews = toolBarView;
         this.canvasView = canvasView;
         setup();
     }
@@ -36,8 +38,12 @@ public class MainView {
 
         StackPane mainPane = new StackPane();
         this.mainDisplay = new HBox();
+        VBox toolArea= new VBox();
+        for (DrawView view : toolBarViews) {
+            view.addMeToView(toolArea);
+        }
+        mainDisplay.getChildren().add(toolArea);
 
-        this.toolBarView.addMeToView(mainDisplay);
         this.canvasView.addMeToView(mainDisplay);
 
 
@@ -54,7 +60,7 @@ public class MainView {
     }
 
     public void showScene(Stage rootStage) {
-
+        rootStage.setResizable(false);
         rootStage.setTitle("Hello World");
         rootStage.setScene(scene);
         rootStage.sizeToScene();

@@ -32,7 +32,7 @@ public class SPrototype implements MyObservable<ShapeAdded> {
     }
 
 
-    public List<ShapeDescription> getPrototypes(){
+    public List<ToolDescription> getPrototypes(){
         return new ArrayList<>(shapes.values());
     }
 
