@@ -22,15 +22,6 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 
 public class Main extends Application {
-
-    private SceneController controller;
-    private ToolBarController toolBarController;
-    private CanvasController canvasController;
-    private CommandState commandState;
-    private MainViewController mainViewController;
-    private FileChooser fileChooser;
-    private Stage primaryStage;
-    private SceneModel sceneModel;
     private DrawAppFacade drawAppFacade;
 
 
