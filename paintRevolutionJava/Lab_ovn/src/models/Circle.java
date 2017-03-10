@@ -5,6 +5,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
+import java.util.ArrayList;
+
 /**
  * Created by o_0 on 2017-03-08.
  */
@@ -47,6 +49,13 @@ public class Circle extends Shape {
         this.y = y;
     }
 
+    public Circle(double x, double y, double radius, ShapeProperties shapeProperties) {
+        super(shapeProperties);
+        this.radius = radius;
+        this.x = x;
+        this.y = y;
+    }
+
     @Override
     protected void drawShape(GraphicsContext g) {
 
@@ -67,18 +76,31 @@ public class Circle extends Shape {
 
     @Override
     public Shape createCopy() {
-        return new Circle(x,y,radius);
+        try {
+            return new Circle(x,y,radius,shapeProperties.clone());
+        } catch (CloneNotSupportedException e) {
+            return new Circle(x,y,radius);
+        }
     }
 
     @Override
     public Circle clone() throws CloneNotSupportedException {
-        return new Circle(x,y,radius);
+        Circle copy = (Circle)super.clone();
+
+        copy.shapeProperties = copy.shapeProperties.clone();
+
+        return copy;
+    }
+
+    @Override
+    void propertySet(ShapeProperties shapeProperties) {
+
     }
 
     @Override
     public boolean containsPoint(double x, double y) {
         Point2D p = new Point2D(x,y);
-        if (p.distance(this.x,this.y)>radius)
+        if (p.distance(this.x,this.y)>radius/2)
             return false;
         System.out.println("Circle selected");
         return true;

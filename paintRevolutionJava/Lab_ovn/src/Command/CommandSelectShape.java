@@ -1,8 +1,10 @@
 package Command;
 
+import javafx.scene.paint.Color;
 import models.SPrototype;
 import models.SceneModel;
 import models.Shape;
+import models.ShapeProperties;
 
 /**
  * Created by cj on 2017-03-09.
@@ -22,13 +24,18 @@ public class CommandSelectShape implements Command {
     public void execute(CommandTarget target) {
         Shape s = sceneModel.getShapeAt(target.getX(),target.getY());
         if (s == null){
+//            for(Shape tmp : target.getSelections().getShapes()) {
+//                tmp.updateShapeProperties(new ShapeProperties(Color.BLACK,false,tmp.getShapeProperties().getLineWidth()));
+//            }
             target.getSelections().clearSelections();
+            sceneModel.update();
             return;
         }
 
         shape = s;
+        //s.updateShapeProperties(new ShapeProperties(Color.BLUE,false,s.getShapeProperties().getLineWidth()));
         target.getSelections().addShape(shape);
-
+        //sceneModel.update();
 
 
     }

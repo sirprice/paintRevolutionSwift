@@ -3,6 +3,7 @@ package StateHandler;
 import Command.Command;
 import Command.CommandCentral;
 import Command.CommandTarget;
+import Command.IrreversibleCommand;
 import Factory.CommandFactory;
 import SubjectObserver.CanvasClick;
 import SubjectObserver.MyObservable;
@@ -75,6 +76,10 @@ public class CommandState {
         } else if (currentTool.equals("Delete")){
             Command command = commandFactory.getDeleteCommand();
             commandCentral.doCommand(command, new CommandTarget(0, 0, currentShape, activeSelections));
+        }else if (currentTool.equals("NewGroup")){
+            System.out.println("New: groupe did");
+            IrreversibleCommand command = commandFactory.getNewGroupCommand();
+            command.execute(new CommandTarget(0, 0, currentShape, activeSelections));
         }
     }
 

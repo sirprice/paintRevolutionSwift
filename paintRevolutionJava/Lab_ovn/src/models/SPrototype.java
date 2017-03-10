@@ -31,6 +31,7 @@ public class SPrototype implements MyObservable<ShapeAdded> {
     }
 
     public void add(Shape shape){
+        if (shape == null) {return;}
         shapes.put(shape.getName(), shape);
         observer.notifyObservers(m -> m.modelChanged());
     }

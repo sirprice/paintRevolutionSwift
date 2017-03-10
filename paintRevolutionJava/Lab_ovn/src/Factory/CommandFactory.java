@@ -27,6 +27,7 @@ public class CommandFactory {
 
 
     public IrreversibleCommand getNewDocumentCommand(){return new NewDocumentCommand(sceneModel,prototype);}
+    public IrreversibleCommand getNewGroupCommand(){return new NewGroupCommand(sceneModel,prototype);}
 
 
 

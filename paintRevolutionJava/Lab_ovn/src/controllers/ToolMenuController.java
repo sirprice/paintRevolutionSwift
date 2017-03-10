@@ -13,10 +13,13 @@ public class ToolMenuController {
     public ToolMenuController(ToolMenuModel menuModel, ToolBarView toolbar) {
         this.menuModel = menuModel;
         this.toolbar = toolbar;
+        toolbar.getObserver().add(this,this::updateToolbar);
         updateTools();
 
     }
-
+    private void updateToolbar(String name) {
+        updateTools();
+    }
     public void updateTools() {
         this.toolbar.setTools(menuModel.getTools());
     }

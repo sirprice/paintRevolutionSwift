@@ -49,15 +49,18 @@ abstract public class Shape implements ToolDescription, Cloneable, Serializable 
     {
         try {
             Shape copy = (Shape)super.clone();
-            copy.shapeProperties.clone();
+            copy.shapeProperties = copy.shapeProperties.clone();
             return copy;
         } catch (CloneNotSupportedException e) {
             return null;
         }
     }
 
+
+    abstract void propertySet(ShapeProperties shapeProperties);
     public void updateShapeProperties(ShapeProperties shapeProperties){
         this.shapeProperties = shapeProperties;
+        propertySet(shapeProperties);
     }
 
 }
