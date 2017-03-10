@@ -10,6 +10,8 @@ import java.util.List;
 
 /**
  * Created by o_0 on 2017-03-09.
+ *
+ * this class represents all the program specific tools
  */
 public class ToolMenuModel implements MySubject<ShapeAdded>{
     private ArrayList<ToolDescription> shapes = new ArrayList<>();

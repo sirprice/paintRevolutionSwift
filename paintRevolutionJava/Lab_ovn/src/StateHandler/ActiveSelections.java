@@ -7,8 +7,11 @@ import java.util.List;
 
 /**
  * Created by cj on 2017-03-09.
+ * This class represents all the current selected shapes.
  */
 public class ActiveSelections {
+
+
     private List<Shape> shapes = new ArrayList<>();
 
     public ActiveSelections() {

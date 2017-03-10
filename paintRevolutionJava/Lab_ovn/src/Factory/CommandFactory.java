@@ -8,6 +8,7 @@ import models.ShapeProperties;
 
 /**
  * Created by o_0 on 2017-03-09.
+ * This factory creates the different commands that are available in this program
  */
 public class CommandFactory {
     private SceneModel sceneModel;
