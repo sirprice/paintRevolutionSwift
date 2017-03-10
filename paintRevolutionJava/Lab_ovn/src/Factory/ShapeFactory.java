@@ -11,7 +11,9 @@ import java.util.ArrayList;
  * Created by o_0 on 2017-03-09.
  */
 public class ShapeFactory {
+
     private ShapeFactory(){}
+
     public static ShapeGroup createDude() {
         ArrayList<Shape> dudeComp = new ArrayList<>();
         dudeComp.add(new Circle(0.0, -60.0,  40.0));

@@ -70,36 +70,6 @@ public class ToolBarView implements DrawView , MySubject<ToolSelect> {
     }
 
 
-
-//    Scene scene;
-//
-//    private void debugScene() {
-//        StackPane mainPane = new StackPane();
-//        //Canvas canvas = new Canvas(200,200);
-//        mainPane.getChildren().add(toolBar);
-//        this.scene = new Scene(mainPane, 200, 200);
-//    }
-//
-//
-//    public VBox getToolBar() {
-//        return toolBar;
-//    }
-
-//    @Override
-//    public void showScene(Stage rootStage) {
-//        debugScene();
-//        rootStage.setTitle("ToolBar");
-//        rootStage.setScene(scene);
-//        rootStage.sizeToScene();
-//        rootStage.show();
-//
-//    }
-
-//    @Override
-//    public void setDelegate(SceneController controller) {
-//
-//    }
-
     @Override
     public void addMeToView(Pane pane) {
         pane.getChildren().add(toolBar);

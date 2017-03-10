@@ -27,7 +27,6 @@ public class FileManager {
         return null;
    }
 
-
     static public void saveFile(Stage primaryStage, List<Shape> shapes){
         File file = new FileChooser().showSaveDialog(primaryStage);
         if (file != null) {
@@ -39,14 +38,16 @@ public class FileManager {
             }
         }
     }
-    static public void showAlertLoadFile(){
+
+    private static void showAlertLoadFile(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Could not open file!");
         alert.setHeaderText("Could not open file!");
         alert.setContentText(null);
         alert.showAndWait();
     }
-    static public void showAlertSaveFile(){
+
+    private static void showAlertSaveFile(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Could not saved file");
         alert.setHeaderText("COULD NOT SAVE FILE \n\n please try again");
@@ -54,7 +55,7 @@ public class FileManager {
         alert.showAndWait();
     }
 
-    static public List<Shape> loadFile(File file) throws IOException, ClassNotFoundException {
+    private static List<Shape> loadFile(File file) throws IOException, ClassNotFoundException {
         ObjectInputStream input;
         List<Shape> result = null;
         if (file != null) {
@@ -65,7 +66,8 @@ public class FileManager {
         }
         return result;
     }
-    static public void saveFile(File file, List<Shape> shapes) throws IOException{
+
+    private static void saveFile(File file, List<Shape> shapes) throws IOException{
         ObjectOutputStream output;
         if (file != null){
             output = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)));

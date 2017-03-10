@@ -21,42 +21,69 @@ public class CommandState {
     private String currentTool = null;
     private Shape selectedShape = null;
     private ActiveSelections activeSelections = new ActiveSelections();
-
-    //    private SPrototype prototype;
-//       private SceneModel sceneModel;
-
     private CommandCentral commandCentral = new CommandCentral();
-    CommandFactory commandFactory;
+    private CommandFactory commandFactory;
+
 
     public CommandState(CommandFactory commandFactory) {
-//        this.prototype = prototype;
-//        this.sceneModel = sceneModel;
-        this.commandFactory = commandFactory;// new CommandFactory(prototype, sceneModel);
+        this.commandFactory = commandFactory;
     }
 
     public void setToolSelectionObserver(MySubject<ToolSelect> selectObserver) {
+
+    /**
+     * adding observer to the selectObserver and connecting it to function to handle event
+     * @param selectObserver
+     */
+    public void setToolSelectionObserver(MyObservable<ToolSelect> selectObserver) {
         selectObserver.getObserver().add(this, this::eventSelectTool);
     }
 
     public void setShapePropertyObserver(MySubject<ObserverShapeProperties> selectObserver) {
+    /**
+     * adding observer to the selectObserver and connecting it to function to handle event
+     * @param selectObserver
+     */
+    public void setShapePropertyObserver(MyObservable<ObserverShapeProperties> selectObserver) {
         selectObserver.getObserver().add(this, this::eventShapePropertiesChanged);
     }
 
 
     public void setShapeSelectObserver(MySubject<ToolSelect> selectObserver) {
+    /**
+     * adding observer to the selectObserver and connecting it to function to handle event
+     * @param selectObserver
+     */
+    public void setShapeSelectObserver(MyObservable<ToolSelect> selectObserver) {
         selectObserver.getObserver().add(this, this::eventSelectShapeTool);
     }
 
     public void setCanvasClickObserver(MySubject<CanvasClick> canvasClickObserver) {
+    /**
+     * adding observer to the selectObserver and connecting it to function to handle event
+     * @param canvasClickObserver
+     */
+    public void setCanvasClickObserver(MyObservable<CanvasClick> canvasClickObserver) {
         canvasClickObserver.getObserver().add(this, this::eventClickedAt);
     }
 
+
+    /**
+     * handles the event of when user edits the properties of the shapes
+     * @param color
+     * @param isFilled
+     * @param lineWidth
+     */
     private void eventShapePropertiesChanged(Color color, boolean isFilled, double lineWidth){
         Command command = commandFactory.getChangePropertiesCommand(new ShapeProperties(color,isFilled,lineWidth));
         commandCentral.doCommand(command, new CommandTarget(0, 0, currentShape, activeSelections));
 
     }
 
+    /**
+     * handles the events of mouse click on the toolbar
+     * @param name
+     */
     private void eventSelectTool(String name) {
         System.out.println("eventSelectTool: " + name);
         currentTool = name;
@@ -77,39 +104,38 @@ public class CommandState {
             Command command = commandFactory.getDeleteCommand();
             commandCentral.doCommand(command, new CommandTarget(0, 0, currentShape, activeSelections));
         }else if (currentTool.equals("NewGroup")){
-            System.out.println("New: groupe did");
             IrreversibleCommand command = commandFactory.getNewGroupCommand();
             command.execute(new CommandTarget(0, 0, currentShape, activeSelections));
         }
     }
 
+
+    /**
+     * Handles the event when a mouse click happens on the canvas draw area
+     * @param x
+     * @param y
+     */
     private void eventClickedAt(double x, double y) {
         if (currentShape == null || currentTool == null) {
             return;
         }
 
-
-
-//        Shape shape = prototype.create(currentShape);
-//        if (shape == null) {return;}
         if (currentTool.equals("Draw")) {
             Command command = commandFactory.getCreateComand();
             commandCentral.doCommand(command, new CommandTarget(x, y, currentShape, null));
         }
 
         if (currentTool.equals("Select")) {
-            System.out.println("SelectTool selected, selecting much shapes");
-
             Command command = commandFactory.getSelectComand();
             commandCentral.doCommand(command, new CommandTarget(x, y, currentShape, activeSelections));
         }
-//
-//        shape.setX(x);
-//        shape.setY(y);
-//
-//        sceneModel.addShape(shape);
+
     }
 
+    /**
+     * handles the event when selecting a shape tool
+     * @param name
+     */
     private void eventSelectShapeTool(String name) {
         currentShape = name;
     }

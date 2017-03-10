@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 /**
  * Created by cj on 2017-03-09.
+ * This class represents all the properties of a shape. Feel free to add more ;)
  */
 public class ShapeProperties implements Cloneable,Serializable {
     private double red,green,blue,opacity;
