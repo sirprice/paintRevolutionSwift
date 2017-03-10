@@ -1,9 +1,9 @@
 package models;
 
 import SubjectObserver.MyObservable;
+import SubjectObserver.MySubject;
 import SubjectObserver.ObserverImpl;
 import SubjectObserver.ShapeAdded;
-import SubjectObserver.ToolSelect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by o_0 on 2017-02-17.
  */
-public class SceneModel implements MyObservable<ShapeAdded> {
+public class SceneModel implements MySubject<ShapeAdded> {
     private List<Shape> shapes = new ArrayList<>();
 
     private ObserverImpl<ShapeAdded> observer;
@@ -21,7 +21,7 @@ public class SceneModel implements MyObservable<ShapeAdded> {
         this.shapes.add(new Circle());
     }
 
-    public ObserverImpl<ShapeAdded> getObserver() {
+    public MyObservable<ShapeAdded> getObserver() {
         return observer;
     }
 

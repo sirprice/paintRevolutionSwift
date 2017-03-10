@@ -1,5 +1,6 @@
 package controllers;
 
+import SubjectObserver.MyObservable;
 import SubjectObserver.ObserverImpl;
 import SubjectObserver.ShapeAdded;
 import SubjectObserver.ToolSelect;
@@ -25,8 +26,8 @@ public class ToolBarController implements SceneController {
         this.model = model;
 
 //        this.toolBarView.setTools(model.getShapes(),onMouseClickHandler());
-        ObserverImpl<ToolSelect> selectObserverobserver = toolBarView.getObserver();
-        ObserverImpl<ShapeAdded> observer = model.getObserver();
+        MyObservable<ToolSelect> selectObserverobserver = toolBarView.getObserver();
+        MyObservable<ShapeAdded> observer = model.getObserver();
         observer.add(this,this::updateTools);
         selectObserverobserver.add(this,this::toolSelected);
         updateTools();

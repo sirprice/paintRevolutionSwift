@@ -2,12 +2,9 @@ package view;
 
 import SubjectObserver.*;
 import controllers.SceneController;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import models.Shape;
 
 import java.util.List;
@@ -15,7 +12,7 @@ import java.util.List;
 /**
  * Created by o_0 on 2017-03-08.
  */
-public class CanvasView implements DrawView, MyObservable<CanvasClick> {
+public class CanvasView implements DrawView, MySubject<CanvasClick> {
 
 
     private int width = 824;

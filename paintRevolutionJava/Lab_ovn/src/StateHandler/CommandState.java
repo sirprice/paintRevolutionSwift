@@ -6,7 +6,7 @@ import Command.CommandTarget;
 import Command.IrreversibleCommand;
 import Factory.CommandFactory;
 import SubjectObserver.CanvasClick;
-import SubjectObserver.MyObservable;
+import SubjectObserver.MySubject;
 import SubjectObserver.ObserverShapeProperties;
 import SubjectObserver.ToolSelect;
 import javafx.scene.paint.Color;
@@ -34,20 +34,20 @@ public class CommandState {
         this.commandFactory = commandFactory;// new CommandFactory(prototype, sceneModel);
     }
 
-    public void setToolSelectionObserver(MyObservable<ToolSelect> selectObserver) {
+    public void setToolSelectionObserver(MySubject<ToolSelect> selectObserver) {
         selectObserver.getObserver().add(this, this::eventSelectTool);
     }
 
-    public void setShapePropertyObserver(MyObservable<ObserverShapeProperties> selectObserver) {
+    public void setShapePropertyObserver(MySubject<ObserverShapeProperties> selectObserver) {
         selectObserver.getObserver().add(this, this::eventShapePropertiesChanged);
     }
 
 
-    public void setShapeSelectObserver(MyObservable<ToolSelect> selectObserver) {
+    public void setShapeSelectObserver(MySubject<ToolSelect> selectObserver) {
         selectObserver.getObserver().add(this, this::eventSelectShapeTool);
     }
 
-    public void setCanvasClickObserver(MyObservable<CanvasClick> canvasClickObserver) {
+    public void setCanvasClickObserver(MySubject<CanvasClick> canvasClickObserver) {
         canvasClickObserver.getObserver().add(this, this::eventClickedAt);
     }
 

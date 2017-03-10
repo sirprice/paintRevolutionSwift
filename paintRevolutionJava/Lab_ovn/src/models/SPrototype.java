@@ -1,6 +1,7 @@
 package models;
 
 import SubjectObserver.MyObservable;
+import SubjectObserver.MySubject;
 import SubjectObserver.ObserverImpl;
 import SubjectObserver.ShapeAdded;
 
@@ -12,7 +13,7 @@ import java.util.Map;
 /**
  * Created by cj on 2017-03-08.
  */
-public class SPrototype implements MyObservable<ShapeAdded> {
+public class SPrototype implements MySubject<ShapeAdded> {
 
     private Map<String, Shape> shapes;
     private ObserverImpl<ShapeAdded> observer;
@@ -42,7 +43,7 @@ public class SPrototype implements MyObservable<ShapeAdded> {
     }
 
     @Override
-    public ObserverImpl<ShapeAdded> getObserver() {
+    public MyObservable<ShapeAdded> getObserver() {
         return observer;
     }
 }

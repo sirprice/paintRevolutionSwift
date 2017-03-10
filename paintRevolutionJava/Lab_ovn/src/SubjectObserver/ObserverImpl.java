@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 /**
  * Created by o_0 on 2017-03-08.
  */
-public class ObserverImpl <Observer> {
+public class ObserverImpl <Observer> implements MyObservable<Observer> {
     Map<Object,Observer> observers = new HashMap<>();
 
     public ObserverImpl() {

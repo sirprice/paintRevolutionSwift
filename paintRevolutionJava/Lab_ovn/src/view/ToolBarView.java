@@ -1,12 +1,11 @@
 package view;
 
-import SubjectObserver.MyObservable;
+import SubjectObserver.MySubject;
 import SubjectObserver.ObserverImpl;
 import SubjectObserver.ToolSelect;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Paint;
 import models.Shape;
 import models.ToolDescription;
 
@@ -16,7 +15,7 @@ import java.util.List;
 /**
  * Created by cj on 2017-03-08.
  */
-public class ToolBarView implements DrawView , MyObservable<ToolSelect> {
+public class ToolBarView implements DrawView , MySubject<ToolSelect> {
 
     public static final int width = 200;
     public static final int heigh = 500;

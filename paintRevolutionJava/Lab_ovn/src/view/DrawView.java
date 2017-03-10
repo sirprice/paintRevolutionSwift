@@ -1,11 +1,6 @@
 package view;
 
-import SubjectObserver.MyObservable;
-import SubjectObserver.ObserverImpl;
-import SubjectObserver.ToolSelect;
-import controllers.SceneController;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import models.Shape;
 
 import java.util.List;

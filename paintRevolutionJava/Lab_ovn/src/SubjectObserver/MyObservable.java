@@ -1,8 +1,17 @@
 package SubjectObserver;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Consumer;
+
 /**
- * Created by o_0 on 2017-03-08.
+ * Observerble interface,
  */
-public interface MyObservable <T> {
-    ObserverImpl<T> getObserver();
+public interface MyObservable<Observer> {
+
+    void add(Object observer, Observer method);
+
+    void remove(Object observer);
+
+    void notifyObservers(Consumer<Observer> subject);
 }

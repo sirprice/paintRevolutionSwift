@@ -1,5 +1,7 @@
 package models;
 
+import SubjectObserver.MyObservable;
+import SubjectObserver.MySubject;
 import SubjectObserver.ObserverImpl;
 import SubjectObserver.ShapeAdded;
 
@@ -9,7 +11,7 @@ import java.util.List;
 /**
  * Created by o_0 on 2017-03-09.
  */
-public class ToolMenuModel {
+public class ToolMenuModel implements MySubject<ShapeAdded>{
     private ArrayList<ToolDescription> shapes = new ArrayList<>();
 
     private ObserverImpl<ShapeAdded> observer;
@@ -28,8 +30,8 @@ public class ToolMenuModel {
 
     }
 
-    public ObserverImpl<ShapeAdded> getObserver() {
-        return null;
+    public MyObservable<ShapeAdded> getObserver() {
+        return observer;
     }
 
     public void addShape(Shape newShape) {

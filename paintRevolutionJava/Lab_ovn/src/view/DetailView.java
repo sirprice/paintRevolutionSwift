@@ -1,6 +1,6 @@
 package view;
 
-import SubjectObserver.MyObservable;
+import SubjectObserver.MySubject;
 import SubjectObserver.ObserverImpl;
 import SubjectObserver.ObserverShapeProperties;
 import javafx.event.ActionEvent;
@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by cj on 2017-03-09.
  */
-public class DetailView implements DrawView , MyObservable<ObserverShapeProperties> {
+public class DetailView implements DrawView , MySubject<ObserverShapeProperties> {
 
 
     private VBox vbox;

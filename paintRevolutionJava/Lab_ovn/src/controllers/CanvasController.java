@@ -1,5 +1,6 @@
 package controllers;
 
+import SubjectObserver.MyObservable;
 import SubjectObserver.ObserverImpl;
 import SubjectObserver.ShapeAdded;
 import javafx.stage.Stage;
@@ -16,7 +17,7 @@ public class CanvasController {
         this.view = view;
         this.model = model;
 //        view.setDelegate(this);
-        ObserverImpl<ShapeAdded> observer = this.model.getObserver();
+        MyObservable<ShapeAdded> observer = this.model.getObserver();
         observer.add(this,this::drawScene);
     }
 

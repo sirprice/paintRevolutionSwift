@@ -21,7 +21,7 @@ public class Setup {
     // View v = new View();
     // Controller c = new Controller(m,v);
     // we can do:
-    // Setup.createConstruct(Model::new,View::new,Controller::new)
+    // Setup.createConstruct(Model::new, View::new, Controller::new)
     public static <M,V,C> C createConstruct(Supplier<M> model, Supplier<V> view, ApplyConstructor<M,V,C> controller) throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
 
         return controller.make(model.get(),view.get());
