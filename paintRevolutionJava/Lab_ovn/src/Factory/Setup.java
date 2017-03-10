@@ -15,33 +15,16 @@ import java.util.function.Supplier;
  */
 public class Setup {
 
+    // this glue a model view and controller thogther, Makes it eaiser to build them,
+    // instead of ex:
+    // Model m = new Model();
+    // View v = new View();
+    // Controller c = new Controller(m,v);
+    // we can do:
+    // Setup.createConstruct(Model::new,View::new,Controller::new)
     public static <M,V,C> C createConstruct(Supplier<M> model, Supplier<V> view, ApplyConstructor<M,V,C> controller) throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
 
         return controller.make(model.get(),view.get());
     }
-
-    public static SceneController createMVCSup(Supplier<SceneModel> model, Supplier<DrawView> view, BiFunction<SceneModel,DrawView,SceneController> controller) throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
-        //Constructor ctor = controller.getDeclaredConstructor(SceneModel.class, DrawView.class);
-
-//        SceneModel m = (SceneModel)model.newInstance();
-//        DrawView v = (DrawView)view.newInstance();
-//
-
-        return controller.apply(model.get(),view.get());
-    }
-
-    public static SceneController createDrawArea(Class model, Class view,Class controller) throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
-        Constructor ctor = controller.getDeclaredConstructor(SceneModel.class, DrawView.class);
-
-//        SceneModel m = (SceneModel)model.newInstance();
-//        DrawView v = (DrawView)view.newInstance();
-//
-        return (SceneController)ctor.newInstance(model.newInstance(),view.newInstance());
-    }
-//    public static SceneController createDrawArea(Class model, Class view) throws IllegalAccessException, InstantiationException {
-//        SceneModel m = (SceneModel)model.newInstance();
-//        DrawView v = (DrawView)view.newInstance();
-//        return (SceneController)new MainViewController(m,v);
-//    }
 
 }
