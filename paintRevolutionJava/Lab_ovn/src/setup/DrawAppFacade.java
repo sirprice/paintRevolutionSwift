@@ -27,6 +27,10 @@ import java.util.ArrayList;
 public class DrawAppFacade {
     private Stage primaryStage;
     private SceneModel sceneModel;
+
+    ToolMenuController controller;
+    ToolBarController toolBarController;
+    CanvasController canvasController;
     private MainViewController mainViewController;
 //    private SPrototype sPrototype
     public DrawAppFacade(Stage primaryStage) throws Exception{
@@ -54,9 +58,9 @@ public class DrawAppFacade {
 
         toolSelectorBarView.getObserver().add(this,this::loadFile);
 
-        ToolMenuController controller = Setup.createConstruct(ToolMenuModel::new , () -> toolSelectorBarView, ToolMenuController::new);
-        ToolBarController toolBarController = Setup.createConstruct(() -> sPrototype,() -> toolShapesBarView , ToolBarController::new);
-        CanvasController canvasController = Setup.createConstruct(() -> sceneModel,() -> canvasView, CanvasController::new);
+        controller = Setup.createConstruct(ToolMenuModel::new , () -> toolSelectorBarView, ToolMenuController::new);
+        toolBarController = Setup.createConstruct(() -> sPrototype,() -> toolShapesBarView , ToolBarController::new);
+        canvasController = Setup.createConstruct(() -> sceneModel,() -> canvasView, CanvasController::new);
 
         ArrayList<DrawView> toolArea = new ArrayList<>();
         toolArea.add(toolSelectorBarView);
