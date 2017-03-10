@@ -22,12 +22,10 @@ abstract public class Shape implements ToolDescription, Cloneable, Serializable 
         GraphicsContext context2D = canvas.getGraphicsContext2D();
         context2D.setLineWidth(shapeProperties.getLineWidth());
         context2D.setStroke(shapeProperties.getColor());
-        if (shapeProperties.isFilled())
-            context2D.fill();
-
+        if (shapeProperties.isFilled()) {
+            context2D.setFill(shapeProperties.getColor());
+        }
         drawShape(context2D);
-
-
     }
 
     public ShapeProperties getShapeProperties() {

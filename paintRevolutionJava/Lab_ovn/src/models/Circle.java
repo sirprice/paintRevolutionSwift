@@ -64,7 +64,11 @@ public class Circle extends Shape {
 //        if (shapeProperties.isFilled())
 //            g.fill();
 //
-        g.strokeOval(x - radius/2,y - radius/2,radius,radius);
+        if (shapeProperties.isFilled()) {
+            g.fillOval(x - radius/2,y - radius/2,radius,radius);;
+        }else {
+            g.strokeOval(x - radius / 2, y - radius / 2, radius, radius);
+        }
         g.stroke();
 
     }

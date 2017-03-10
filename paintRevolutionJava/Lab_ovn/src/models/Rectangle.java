@@ -60,7 +60,11 @@ public class Rectangle extends Shape {
         //g.setStroke(Color.BLACK);
 
 
-        g.strokeRect(x - width/2, y - height/2, width, height);
+        if (shapeProperties.isFilled()) {
+            g.fillRect(x - width / 2, y - height / 2, width, height);
+        }else {
+            g.strokeRect(x - width / 2, y - height / 2, width, height);
+        }
         g.stroke();
 
     }
